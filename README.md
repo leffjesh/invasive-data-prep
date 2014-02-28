@@ -32,10 +32,15 @@ This tools automates some of the steps required to prep weed observation point d
 Paramaters:
 
 Bulk upload layer - points from data contributer
+
 Scientific name - the field in the bulk upload layer that contains the scientific names of the weeds
+
 Counties Layer - must only be for state in question and must utilize desired projection for new dataset. 
+
 state species list - any table (or imported csv/etc) can be used.  see example provided for format
+
 synonym table - see example provided
+
 output workspace - must be file geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
 
 
