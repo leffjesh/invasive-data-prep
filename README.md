@@ -46,11 +46,17 @@ output workspace - must be file geodatabase.  this is used to create the output 
 
 
 Tasks performed: 
+  
   clip to 1/2 mile buffer of state
+  
   reproject to state format
+  
   populate county field
+  
   adds origx, origy fields and populates them using the new projection from the county layer
+  
   modify data by updating synonyms table to update names to new nomenclature
+  
   populate state species ID, scientific, common_names
   
   
