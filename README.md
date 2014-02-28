@@ -1,14 +1,16 @@
 invasive-data-prep
 ==================
-This is an ArcGIS python toolbox with a tool to create UUIDs for a specified layer in a specified attribute.
-
 Requirements:
 
-You must have ArcGIS installed in order to use this. Developed with ArcGIS 10.1 install.
+You must have ArcGIS installed in order to use this. Developed with ArcGIS 10.1 SP1 install, but probably works on new versions.
 
 Background:
 
-iMap is a tool used by some USA state entities to manage and share invasive species data (all taxa).  The process of prepping data from various partners and entities within a state has fallen to the state's iMap data administrator.  This task often results in similar data management challenges, of which this tool seeks to automate some.   Currently, it only supports processing of point observation data.   Coding contributions are welcome.  Future work is detailed below.  Github allows for "issues" to be submitted on any project, so use that if you have any trouble so that there is a record for other to peruse.
+iMap is a tool used by some US and Canadian state/province entities to manage and share invasive species data (all taxa).  The process of prepping data from various partners and entities within a state has fallen to the state's iMap data administrator.  This task often results in similar data management challenges, of which this tool seeks to automate some.   Currently, it only supports processing of point observation data.   Coding contributions are welcome.  Future work is detailed below.  
+
+Issues?
+
+Github allows for "issues" to be submitted on any project, so use that if you have any trouble so that there is a record for other to peruse.
 
 Setup:
 
@@ -29,13 +31,21 @@ This tools automates some of the steps required to prep weed observation point d
 
 Paramaters:
 
+Bulk upload layer - points from data contributer
+Scientific name - the field in the bulk upload layer that contains the scientific names of the weeds
 Counties Layer - must only be for state in question and must utilize desired projection for new dataset. 
+state species list - any table (or imported csv/etc) can be used.  see example provided for format
+synonym table - see example provided
+output workspace - must be file geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
+
+
 
 Tasks performed: 
   clip to 1/2 mile buffer of state
   reproject to state format
-  opulate county field
-  odify data by updating synonyms table to update names to new nomenclature
+  populate county field
+  adds origx, origy fields and populates them using the new projection from the county layer
+  modify data by updating synonyms table to update names to new nomenclature
   populate state species ID, scientific, common_names
   
   
