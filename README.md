@@ -6,7 +6,7 @@ You must have ArcGIS installed in order to use this. Developed with ArcGIS 10.1 
 
 Background:
 
-iMap is a tool used by some US and Canadian state/province entities to manage and share invasive species data (all taxa).  The process of prepping data from various partners and entities within a state has fallen to the state's iMap data administrator.  This task often results in similar data management challenges, of which this tool seeks to automate some.   Currently, it only supports processing of point observation data.   Coding contributions are welcome.  Future work is detailed below.  
+iMap is a tool used by some US and Canadian state/province entities to manage and share invasive species data (all taxa).  The process of prepping data from various partners and entities within a state has fallen to the state's iMap data administrator.  This task often results in similar data management challenges, of which this tool seeks to automate some.   Currently, it only supports processing of point observation data.   Coding contributions are welcome.  Future work is detailed below. This tool is not designed to be "bulletproof" or support use by casual ArcGIS users.
 
 Issues?
 
@@ -49,10 +49,13 @@ Tasks performed:
   populate state species ID, scientific, common_names
   
   
-Future work (iMapDataPrep) - 
+Future ideas (iMapDataPrep) - 
   populate observer IDs using a list of names used by an observer
-
-
+  support polygons
+  
+  
+Future work (general)-
+  ?
   
   
   
