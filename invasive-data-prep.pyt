@@ -298,15 +298,20 @@ class iMapDataPrep(object):
 if __name__ == '__main__':
     # This is used for debugging. Using this separated structure makes it much easier to debug using standard Python development tools.
 
-    tasks = iMapDataPrep()
-    params = tasks.getParameterInfo()
-    params[0].value = 'C:/temp3/points.shp'
-    params[1].value = 'scientific'
-    params[2].value = 'C:/temp3/orcnty24.shp'
-    params[3].value = 'C:/temp3/state_species_list_20140107.csv'
-    params[4].value = 'C:/temp3/synonyms.csv'
-    params[5].value = 'C:/temp3/New File Geodatabase.gdb'
-    
-    tasks.execute(params, None)
+    if 1==0:
+        tasks = iMapDataPrep()
+        params = tasks.getParameterInfo()
+        params[0].value = 'C:/temp3/points.shp'
+        params[1].value = 'scientific'
+        params[2].value = 'C:/temp3/orcnty24.shp'
+        params[3].value = 'C:/temp3/state_species_list_20140107.csv'
+        params[4].value = 'C:/temp3/synonyms.csv'
+        params[5].value = 'C:/temp3/New File Geodatabase.gdb'
+        
+        tasks.execute(params, None)
 
-    print(tasks.label)
+        print(tasks.label)
+    else:
+        pass
+    
+    pass
