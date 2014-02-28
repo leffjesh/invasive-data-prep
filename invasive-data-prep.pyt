@@ -129,8 +129,6 @@ class iMapDataPrep(object):
             datatype="GPTableView",
             parameterType="Required",
             direction="Input")
-
-        
         
         param5 = arcpy.Parameter(
             displayName="Output Workspace",
@@ -217,6 +215,9 @@ class iMapDataPrep(object):
 
         arcpy.CopyFeatures_management("in_memory/in_lyr_withCounty", "in_memory/bulk_out")
         
+        arcpy.Delete_management("in_memory/in_lyr_withCounty")
+        arcpy.Delete_management("in_memory/state_boundary")
+        
         # Use ListFields to get a list of field objects
         fieldObjList = arcpy.ListFields(state_counties)
         fieldNameList = []
@@ -290,8 +291,8 @@ class iMapDataPrep(object):
         #write to disk
         arcpy.CopyFeatures_management("bulk_out_fl", out_featureclass)
         
+        arcpy.Delete_management("in_memory/bulk_out")
         
-
         return
         
 if __name__ == '__main__':
