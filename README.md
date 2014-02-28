@@ -55,7 +55,7 @@ Tasks performed:
   
   -adds origx, origy fields and populates them using the new projection from the county layer
   
-  -modify data by updating synonyms table to update names to new nomenclature
+  -stardardize nomenclature using synonyms table
   
   -populate state species ID, scientific, common_names
   
