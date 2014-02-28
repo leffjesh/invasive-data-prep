@@ -86,7 +86,11 @@ class iMapDataPrep(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
         self.label = "iMapDataPrep"
-        self.description = "Preps data for inclusion in iMap dataset.  Designed to support all states.  Counties layer must only be for state in question.  Tasks performed: 0) clip to 1/2 mile buffer of state, 1) reproject to state format, 2) populate county field, 3) populate state species ID, scientific, common_names, 4) populate observer IDs "
+        self.description = "Automates some of the steps required to prep weed observation point data for inclusion in iMap dataset. "+\
+            " Counties layer must only be for state in question and must utilize desired projection for new dataset. " + \
+            " Tasks performed: - clip to 1/2 mile buffer of state, reproject to state format, populate county field, "+\
+            "modify data by updating synonyms table to update names to new nomenclature, "+\
+            "populate state species ID, scientific, common_names, (possible future work would be to populate observer IDs using a list of synonyms for an observer)"
         self.canRunInBackground = False
 
     def getParameterInfo(self):
@@ -136,11 +140,6 @@ class iMapDataPrep(object):
             direction="Input")
         
         param5.filter.list = ["Local Database"]
-#         param3.parameterDependencies = [param0.name]
-#         param3.schema.clone = True
-        
-        # To define a file filter that includes .csv and .txt extensions,
-        #  set the filter list to a list of file extension names
         param0.filter.list = ["Point"]
         param2.filter.list = ["Polygon"]
         params = [param0, param1, param2, param3,param4, param5]
@@ -216,7 +215,7 @@ class iMapDataPrep(object):
         arcpy.SpatialJoin_analysis("in_lyr", state_counties, "in_memory/in_lyr_withCounty","#","#","","within")
         arcpy.CalculateField_management("in_memory/in_lyr_withCounty","County","!altName!","PYTHON_9.3")
 
-        arcpy.CopyFeatures_management("in_memory/in_lyr_withCounty", out_featureclass)
+        arcpy.CopyFeatures_management("in_memory/in_lyr_withCounty", "in_memory/bulk_out")
         
         # Use ListFields to get a list of field objects
         fieldObjList = arcpy.ListFields(state_counties)
@@ -225,20 +224,20 @@ class iMapDataPrep(object):
         for field in fieldObjList:
             if not field.required:
                 fieldNameList.append(field.name)
-        arcpy.DeleteField_management(out_featureclass, fieldNameList)
+        arcpy.DeleteField_management("in_memory/bulk_out", fieldNameList)
         
         #=======================================================================
         # add species ID, commonname, and scientificname
         #=======================================================================
         arcpy.MakeTableView_management(species_table,"species_table")
         arcpy.MakeTableView_management(synonym_table,"synonym_table")
-        arcpy.MakeFeatureLayer_management(out_featureclass,"bulk_out_fl")
+        arcpy.MakeFeatureLayer_management("in_memory/bulk_out","bulk_out_fl")
         
         #=======================================================================
         # #edit bulk_out_fl to remove extra white space in scientific field, update species names using synonyms table
         #=======================================================================
-        #todo
         
+        #create data structure with weed informations
         cursor = arcpy.SearchCursor("synonym_table")
         weeds = {}
         for row in cursor:
@@ -246,14 +245,7 @@ class iMapDataPrep(object):
             weeds[row.getValue("stateSpeciesID")] = row.getValue("synonym")
         
         del cursor, row
-        
-#         existing_fields1 = [f.name for f in arcpy.ListFields(species_table)]
-#         print existing_fields1
-# 
-#         
-#         existing_fields2 = [f.name for f in arcpy.ListFields(synonym_table)]
-#         print existing_fields2
-        
+  
         cursor = arcpy.SearchCursor("species_table")
         for row in cursor:
             if row.getValue("stateSpeciesID") in weeds:
@@ -261,7 +253,7 @@ class iMapDataPrep(object):
                 val = row.state_scientific_name
                 weeds[ field  ] = val
 
-        #i use the above methods and avoid using a where clause because I don't know what type of db it is, probably a way around this, but this works
+        #process records and update nomenclature and remove trailing and leading whitespace
         records = arcpy.UpdateCursor("bulk_out_fl")
         for record in records:
             sci_name_given = record.getValue(bulk_in_sci_field)
@@ -276,6 +268,7 @@ class iMapDataPrep(object):
 
         del record, records
         
+        #add new fields for species info
         new_fields = [["stateSpeciesID",15],["state_scientific_name",255], ["stateCommonName",255] ]
         existing_fields = [f.name for f in arcpy.ListFields("bulk_out_fl")]
         
@@ -283,21 +276,22 @@ class iMapDataPrep(object):
             if not field[0] in existing_fields:
                 arcpy.AddField_management("bulk_out_fl", field[0], "TEXT", field[1])
         
-        #add species fields
+        #add species fields from specified table view
         arcpy.AddJoin_management("bulk_out_fl", bulk_in_sci_field, "species_table", "state_scientific_name", "KEEP_COMMON")
         
-        #delete extraneous fields
+        #copy info from join into permanent fields
         desc = arcpy.Describe("species_table")
-        
         for field in new_fields:
             arcpy.CalculateField_management("bulk_out_fl",field[0],"!"+desc.name+"."+field[0]+"!","PYTHON_9.3")
 
+        #remove join so that we don't export extra fields
         arcpy.RemoveJoin_management("bulk_out_fl")
         
         #write to disk
-        arcpy.CopyFeatures_management("bulk_out_fl", out_featureclass + "_2")
+        arcpy.CopyFeatures_management("bulk_out_fl", out_featureclass)
         
-        #start hear, write file or other?
+        
+
         return
         
 if __name__ == '__main__':
