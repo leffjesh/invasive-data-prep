@@ -41,7 +41,7 @@ Paramaters:
 
 -synonym table - see example provided
 
--output workspace - must be file geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
+-output workspace - must be file or personal geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
 
 
 
