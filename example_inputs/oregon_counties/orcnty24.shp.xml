@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>OR/WA BLM</origin>
+				<pubdate>September, 2007</pubdate>
+				<title>Boundary Counties OR (Polygons)</title>
+				<geoform>vector digital data</geoform>
+				<pubinfo><pubplace>Portland, OR</pubplace><publish>OR BLM</publish></pubinfo><onlink Sync="TRUE">\\ILMORSO40486714\D\FIT\Admin\Official Layers\countybndy_20070907</onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>This theme is a graphic depiction of the legal jurisdictional county perimeters for the State of Oregon.</abstract>
+			<purpose>Resource management planning and mapping</purpose>
+			<supplinf>BLM (Bureau of Land Management), CFF (Cartographic Feature File), DLG (Digital Line Graph), DNR (Washington Department of Natural Resources), DRG (Digital Raster Graphic), FIPS (Federal Information Processing Standard), GCD (Geographic Coordinate Database layer), GCDB (Geographic Coordinate Data Base), HYD (WODDB Hydrologic Features layer), LLI (Landlines layer), USFS (U.S. Forest Service), USGS (U.S. Geological Survey), WODDB (Western Oregon Digital Data Base)</supplinf><langdata>en</langdata></descript>
+		<timeperd>
+			<timeinfo>
+				<rngdates><begdate>1999</begdate><begtime>unknown</begtime><enddate>2008</enddate><endtime>unknown</endtime></rngdates></timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>In work</progress>
+			<update>Irregular</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc>-124.961735</westbc>
+				<eastbc>-116.415546</eastbc>
+				<northbc>46.344728</northbc>
+				<southbc>41.914842</southbc>
+			</bounding>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>None</themekt>
+				<themekey>Lands</themekey>
+				<themekey>Base Data</themekey><themekey>Boundaries</themekey><themekey>Cartographic</themekey><themekey>Jurisdiction</themekey><themekey>County</themekey><themekey>Perimeter</themekey><themekey>Perimeter</themekey></theme>
+			<theme><themekt>ISO 19115</themekt><themekey>boundaries</themekey></theme><place><placekt>None</placekt><placekey>Oregon</placekey></place></keywords>
+		<accconst>Discretionary, contains no sensitive information - generally considered releasable.</accconst>
+		<useconst>None; however, users are reminded that the legal descriptions for County boundaries are published in the Oregon Revised Statutes (ORS 201.010 - 201.370).  Any surveys of the county boundaries will be recorded in the counties.</useconst>
+		<native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.1.0.780</native>
+		<ptcontac><cntinfo><cntorgp><cntorg>Bureau of Land Management, OR/WA State Office</cntorg><cntper>Mary Hartel</cntper></cntorgp><cntpos>Chief,  Branch of Geographic Sciences</cntpos><cntaddr><addrtype>mailing address</addrtype><address>P. O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>(503)808-6131</cntvoice></cntinfo></ptcontac><crossref><citeinfo><title>Boundary Counties OR WA (Line)</title><origin>OR/WA BLM</origin><pubdate>2008</pubdate><pubtime>Unknown</pubtime><geoform>vector digital data</geoform></citeinfo></crossref><natvform>Shapefile</natvform></idinfo>
+	<dataqual>
+		<lineage>
+			<procstep>
+				<procdesc>BLM contractor used the cited sources( see source information) to extract the desired line work and create the new coverage. This was accomplished in ARCEDIT using the SELECT &amp; PUT commands. The coverage was then cleaned, built for topology and projected to Lambert Conformal Conic.  All line work was ultimately snapped to GCDB points where available.</procdesc>
+				<srcused>\\s6000e\gis\Layer_Development\county_boundary\countybndyupdate.mdb</srcused>
+				<proccont><cntinfo><cntperp><cntper>Don Hsiao</cntper><cntorg>ORSO BLM/Northrop Grumman</cntorg></cntperp><cntaddr><addrtype>mailing address</addrtype><address>P.O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>503-808-6534</cntvoice><cntemail>dhsiao@or.blm.gov</cntemail></cntinfo></proccont><procdate>20010801</procdate></procstep>
+			<procstep><procdesc>Coverage reprojected to Geographic projection with a datum of NAD83</procdesc><srcused Sync="TRUE">C:\DOCUME~1\cplank\LOCALS~1\Temp\xml5EDC.tmp</srcused><date Sync="TRUE">20080314</date><time Sync="TRUE">14232500</time><proccont><cntinfo><cntperp><cntper>Lori Davies</cntper><cntorg>ORSO BLM/Northrop Grumman</cntorg></cntperp><cntaddr><addrtype>mailing address</addrtype><address>P.O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>503-808-6623</cntvoice><cntfax>503-808-6318</cntfax><cntemail>Lori_Davies@or.blm.gov</cntemail></cntinfo></proccont><procdate>Unknown</procdate></procstep><srcinfo><srccite><citeinfo><origin>OR/WA BLM</origin><pubdate>2007</pubdate><title>Geographic Coordinate Database Oregon (Point and Line)</title><geoform>vector digital data</geoform><pubinfo><pubplace>Portland, OR</pubplace><publish>OR BLM</publish></pubinfo></citeinfo></srccite><srcscale>24000</srcscale><typesrc>online</typesrc><srctime><timeinfo><sngdate><caldate>unknown</caldate><time>unknown</time></sngdate></timeinfo><srccurr>publication date</srccurr></srctime><srccitea>BLM GCD</srccitea><srccontr>Lines</srccontr></srcinfo><procstep><proccont><cntinfo><cntperp><cntper>Bryant Mecklem</cntper><cntorg>ORSO BLM/Northrop Grumman</cntorg></cntperp><cntpos>SDE Admin</cntpos><cntaddr><addrtype>mailing address</addrtype><address>P.O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>503.808.6506</cntvoice><cntemail>bmecklem@or.blm.gov</cntemail></cntinfo></proccont><procdesc>Original coverage version of the county boundary dataset was loaded into the Oregon Washington Corporate SDE instance as two separate feature classes (Line &amp; Polygon). This SDE data is now considered the master version.</procdesc><procdate>2005</procdate></procstep><procstep><procdesc>Metadata imported.</procdesc><srcused>orso_vctr_metadata\cob_poly.xml</srcused></procstep><procstep><proccont><cntinfo><cntperp><cntper>Michael "Chad" Crockett</cntper><cntorg>Oregon Dept. of Transportation</cntorg></cntperp></cntinfo></proccont><procdesc>Updated county boundaries compiled.</procdesc><procdate>June 2007</procdate></procstep><procstep><proccont><cntinfo><cntperp><cntper>Corey Plank</cntper><cntorg>ORSO BLM</cntorg></cntperp><cntpos>Lead Cartographer</cntpos><cntaddr><addrtype>mailing address</addrtype><address>P.O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>503-808-6145</cntvoice><cntfax>503-808-6190</cntfax><cntemail>Corey_Plank@or.blm.gov</cntemail></cntinfo></proccont><procdesc>Dissolved to create single polygon for each County.  This removes the need to separately maintain land/water boundaries within this theme.</procdesc><procsv>ArcMap 9.2</procsv><procdate>September 7, 2007</procdate></procstep><procstep><proccont><cntinfo><cntperp><cntper>Corey Plank</cntper><cntorg>USDI Bureau of Land Management</cntorg></cntperp><cntpos>Lead Cartographer</cntpos><cntvoice>503-808-6145</cntvoice><cntfax>503-808-6190</cntfax><cntemail>Corey_Plank@or.blm.gov</cntemail></cntinfo></proccont><procdesc>Shifted boundary line to match 40 acre land exchange between Coos and Douglas Counties.</procdesc><procsv>ArcGIS 9.2</procsv><procdate>09/07/2007</procdate></procstep><procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">D:\Boundaries\County\County_Land.shp.xml</srcused><date Sync="TRUE">20080317</date><time Sync="TRUE">11121600</time></procstep><procstep><procdesc Sync="TRUE">Dataset moved.</procdesc><srcused Sync="TRUE">D:\Boundaries\County\2007\countybndy_20070907</srcused><date Sync="TRUE">20080318</date><time Sync="TRUE">11153800</time></procstep></lineage>
+		<logic>This theme was built for polygon topology.</logic><complete>This theme covers all public and private lands in Oregon.</complete><posacc><horizpa><horizpar>Line accuracy is stored in the line attribute RELIABILITY, where codes are assigned based on the line source.  See Entity and Attribute Information section for the breakdown used.</horizpar></horizpa></posacc></dataqual>
+	<spdoinfo>
+		<direct>Vector</direct>
+		<ptvctinf>
+			<sdtsterm>
+				<sdtstype>G-polygon</sdtstype>
+				<ptvctcnt>1767</ptvctcnt>
+			</sdtsterm>
+			<sdtsterm><sdtstype>Label point</sdtstype><ptvctcnt>36</ptvctcnt></sdtsterm></ptvctinf>
+		<indspref>Oregon</indspref></spdoinfo>
+	<spref>
+		<horizsys>
+			<planar>
+				<mapproj>
+					<mapprojn>Lambert Conformal Conic</mapprojn>
+					<lambertc>
+						<stdparll>43.000000</stdparll>
+						<stdparll>45.500000</stdparll>
+						<longcm>-120.500000</longcm>
+						<latprjo>41.750000</latprjo>
+						<feast>1312335.958005</feast>
+						<fnorth>0.000000</fnorth>
+					</lambertc>
+				</mapproj>
+				<planci>
+					<plance>coordinate pair</plance>
+					<coordrep>
+						<absres>0.002857</absres>
+						<ordres>0.002857</ordres>
+					</coordrep>
+					<plandu>international feet</plandu>
+				</planci>
+			</planar>
+			<geodetic>
+				<horizdn>North American Datum of 1983</horizdn>
+				<ellips>Geodetic Reference System 80</ellips>
+				<semiaxis>6378137.000000</semiaxis>
+				<denflat>298.257222</denflat>
+			</geodetic>
+			<cordsysn><geogcsn>GCS_North_American_1983</geogcsn><projcsn>NAD 1983 Oregon Statewide Lambert Feet Intl</projcsn></cordsysn></horizsys>
+		<vertdef>
+			<altsys>
+				<altres>0.000010</altres>
+				<altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+			</altsys>
+		</vertdef>
+	</spref>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>County polygons</enttypl>
+				<enttypd>Attributes for counties</enttypd><enttypds>OR/WA BLM</enttypds></enttyp>
+			<attr>
+				<attrlabl>OBJECTID</attrlabl>
+				<attrdef>Internal feature number.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Shape</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CNTY_NAME</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>LAND_TYPE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>FIPS_CODE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>CNTY_CODE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>PART_ID</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>Shape_Length</attrlabl>
+				<attrdef>Length of feature in internal units.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Shape_Area</attrlabl>
+				<attrdef>Area of feature in internal units squared.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AREA_SQMI</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>PRMTR_FT</attrlabl>
+			</attr>
+		</detailed>
+	</eainfo>
+	<distinfo>
+		<resdesc>Downloadable Data</resdesc>
+		<distrib><cntinfo><cntperp><cntper>Eric Hiebenthal</cntper><cntorg>Bureau of Land Management/Northrop Grumman</cntorg></cntperp><cntpos>Data Administration Supervisor</cntpos><cntaddr><addrtype>mailing address</addrtype><address>P.O. Box 2965</address><city>Portland</city><state>OR</state><postal>97208-2965</postal><country>USA</country></cntaddr><cntvoice>503-808-6565</cntvoice><cntfax>503-808-6374</cntfax><cntemail>ehiebent@or.blm.gov</cntemail></cntinfo></distrib><distliab>No warranty is made by the Bureau of Land Management as to the accuracy, reliability, or completeness of these data for individual use or aggregate use with other data.</distliab><stdorder><fees>Contact distributor.</fees><ordering>Data are available through the Oregon/Washington State office of the Bureau of Land Management and through the State of Oregon Geospatial Enterprise Office.</ordering></stdorder></distinfo>
+	<metainfo>
+		<metd>20080317</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Bureau of Land Management, Oregon State Office</cntorg>
+					<cntper>Stanley Frazier</cntper>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>mailing address</addrtype>
+					<city>Portland</city>
+					<state>OR</state>
+					<postal>97208-2965</postal>
+					<address>P.O. Box 2965</address><country>USA</country></cntaddr>
+				<cntvoice>(503)808-6009</cntvoice>
+				<cntpos>State Data Administrator</cntpos><cntfax>(503)808-6419</cntfax><cntemail>Stan_Frazier@or.blm.gov</cntemail></cntinfo>
+		</metc>
+		<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+		<mettc>local time</mettc>
+		<metextns>
+			<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+			<metprof>ESRI Metadata Profile</metprof>
+		</metextns>
+		<langmeta>en</langmeta></metainfo>
+	<Esri><CreaDate>20080317</CreaDate><CreaTime>11121600</CreaTime><SyncOnce>TRUE</SyncOnce><ModDate>20080318</ModDate><ModTime>11265500</ModTime><MetaID>{24D22BCF-D91E-4D8D-AA59-F5083C7F3542}</MetaID></Esri><mdDateSt Sync="TRUE">20080318</mdDateSt><distInfo><distributor><distorTran><onLineSrc><linkage Sync="TRUE">file://\\ILMORSO40486714\D\FIT\Admin\Official Layers\countybndy_20070907</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc></distorTran></distributor></distInfo></metadata>
