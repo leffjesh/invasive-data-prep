@@ -353,7 +353,7 @@ class iMapDataPrep(object):
 if __name__ == '__main__':
     # This is used for debugging. Using this separated structure makes it much easier to debug using standard Python development tools.
 
-    if 1==1:
+    if 1==0:
         tasks = iMapDataPrep()
         params = tasks.getParameterInfo()
         params[0].value = 'C:/temp3/points.shp'
