@@ -110,37 +110,52 @@ class iMapDataPrep(object):
             direction="Input")
         
         param2 = arcpy.Parameter(
+            displayName="Contact/Observer Field",
+            name="contact_attribute",
+            datatype="Field",
+            parameterType="Required",
+            direction="Input")
+
+        param3 = arcpy.Parameter(
             displayName="state_counties",
             name="state_counties",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         
-        param3 = arcpy.Parameter(
+        param4 = arcpy.Parameter(
             displayName="State Species List Table",
             name="state_ids",
             datatype="GPTableView",
             parameterType="Required",
             direction="Input")
-        
-        param4 = arcpy.Parameter(
+    
+        param5 = arcpy.Parameter(
             displayName="Synonym Table",
             name="synonyms",
             datatype="GPTableView",
             parameterType="Required",
             direction="Input")
         
-        param5 = arcpy.Parameter(
+        param6 = arcpy.Parameter(
+            displayName="Contacts Table",
+            name="contacts",
+            datatype="GPTableView",
+            parameterType="Required",
+            direction="Input")
+        
+        param7 = arcpy.Parameter(
             displayName="Output Workspace",
             name="bulk_layer_out",
             datatype="DEWorkspace",
             parameterType="Required",
             direction="Input")
         
-        param5.filter.list = ["Local Database"]
+        param7.filter.list = ["Local Database"]
         param0.filter.list = ["Point"]
-        param2.filter.list = ["Polygon"]
-        params = [param0, param1, param2, param3,param4, param5]
+        param3.filter.list = ["Polygon"]
+        
+        params = [param0, param1, param2, param3,param4, param5, param6,param7]
     
         return params
 
@@ -166,10 +181,12 @@ class iMapDataPrep(object):
         
         bulk_in = parameters[0].value
         bulk_in_sci_field = parameters[1].value
-        state_counties = parameters[2].value
-        species_table = parameters[3].value
-        synonym_table = parameters[4].value
-        bulk_out = parameters[5].value
+        contact_attribute = parameters[2].value
+        state_counties = parameters[3].value
+        species_table = parameters[4].value
+        synonym_table = parameters[5].value
+        contacts_table = parameters[6].value
+        bulk_out = parameters[7].value
         
         #required for in_memory 
         arcpy.env.overwriteOutput = True
@@ -232,13 +249,39 @@ class iMapDataPrep(object):
         #=======================================================================
         arcpy.MakeTableView_management(species_table,"species_table")
         arcpy.MakeTableView_management(synonym_table,"synonym_table")
+        arcpy.MakeTableView_management(contacts_table,"contacts_table")
         arcpy.MakeFeatureLayer_management("in_memory/bulk_out","bulk_out_fl")
+        existing_fields = [f.name for f in arcpy.ListFields("bulk_out_fl")]
+        
         
         #=======================================================================
-        # #edit bulk_out_fl to remove extra white space in scientific field, update species names using synonyms table
+        # #create data structure with contact informations
         #=======================================================================
+        cursor = arcpy.SearchCursor("contacts_table")
+        contacts = {}
+        for row in cursor:
+            contacts[row.getValue("Alternate_Name")] = row.getValue("observerID")
         
-        #create data structure with weed informations
+        #=======================================================================
+        # update new observerID field
+        #=======================================================================
+        if not "observerID" in existing_fields:
+            arcpy.AddField_management("bulk_out_fl", "observerID", "TEXT", 15)
+        
+        records = arcpy.UpdateCursor("bulk_out_fl")
+        for record in records:
+            contact_name_given = record.getValue(contact_attribute)
+            contact_name_given = contact_name_given.strip()
+            
+            if contact_name_given in contacts and contacts[contact_name_given]:
+                record.setValue("observerID", contacts[contact_name_given] )
+                records.updateRow(record)
+        del record, records, contacts
+        
+        
+        #=======================================================================
+        # #create data structure with weed informations
+        #=======================================================================
         cursor = arcpy.SearchCursor("synonym_table")
         weeds = {}
         for row in cursor:
@@ -254,7 +297,9 @@ class iMapDataPrep(object):
                 val = row.state_scientific_name
                 weeds[ field  ] = val
 
-        #process records and update nomenclature and remove trailing and leading whitespace
+        #=======================================================================
+        # #process records and update nomenclature and remove trailing and leading whitespace
+        #=======================================================================
         records = arcpy.UpdateCursor("bulk_out_fl")
         for record in records:
             sci_name_given = record.getValue(bulk_in_sci_field)
@@ -269,26 +314,36 @@ class iMapDataPrep(object):
 
         del record, records
         
-        #add new fields for species info
+        #=======================================================================
+        # #add new fields for species info and observid
+        #=======================================================================
         new_fields = [["stateSpeciesID",15],["state_scientific_name",255], ["stateCommonName",255] ]
-        existing_fields = [f.name for f in arcpy.ListFields("bulk_out_fl")]
+        
         
         for field in new_fields:
             if not field[0] in existing_fields:
                 arcpy.AddField_management("bulk_out_fl", field[0], "TEXT", field[1])
-        
-        #add species fields from specified table view
+
+        #=======================================================================
+        # #add species fields from specified table view
+        #=======================================================================
         arcpy.AddJoin_management("bulk_out_fl", bulk_in_sci_field, "species_table", "state_scientific_name", "KEEP_COMMON")
         
-        #copy info from join into permanent fields
+        #=======================================================================
+        # #copy info from join into permanent fields
+        #=======================================================================
         desc = arcpy.Describe("species_table")
         for field in new_fields:
             arcpy.CalculateField_management("bulk_out_fl",field[0],"!"+desc.name+"."+field[0]+"!","PYTHON_9.3")
 
-        #remove join so that we don't export extra fields
+        #=======================================================================
+        # #remove join so that we don't export extra fields
+        #=======================================================================
         arcpy.RemoveJoin_management("bulk_out_fl")
         
-        #write to disk
+        #=======================================================================
+        # #write to disk
+        #=======================================================================
         arcpy.CopyFeatures_management("bulk_out_fl", out_featureclass)
         
         arcpy.Delete_management("in_memory/bulk_out")
@@ -298,15 +353,17 @@ class iMapDataPrep(object):
 if __name__ == '__main__':
     # This is used for debugging. Using this separated structure makes it much easier to debug using standard Python development tools.
 
-    if 1==0:
+    if 1==1:
         tasks = iMapDataPrep()
         params = tasks.getParameterInfo()
         params[0].value = 'C:/temp3/points.shp'
         params[1].value = 'scientific'
-        params[2].value = 'C:/temp3/orcnty24.shp'
-        params[3].value = 'C:/temp3/state_species_list_20140107.csv'
-        params[4].value = 'C:/temp3/synonyms.csv'
-        params[5].value = 'C:/temp3/New File Geodatabase.gdb'
+        params[2].value = 'observerna'
+        params[3].value = 'C:/temp3/orcnty24.shp'
+        params[4].value = 'C:/temp3/state_species_list_20140107.csv'
+        params[5].value = 'C:/temp3/synonyms.csv'
+        params[6].value = 'C:/temp3/contacts.csv'
+        params[7].value = 'C:/temp3/New File Geodatabase.gdb'
         
         tasks.execute(params, None)
 
