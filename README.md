@@ -35,13 +35,17 @@ Paramaters:
 
 -Scientific name - the field in the bulk upload layer that contains the scientific names of the weeds
 
+-Observer name - field name for observer in bulk upload layer
+
 -Counties Layer - must only be for state in question and must utilize desired projection for new dataset. 
 
 -state species list - any table (or imported csv/etc) can be used.  see example provided for format
 
 -synonym table - see example provided
 
--output workspace - must be file geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
+-contacts table - see example provided
+
+-output workspace - must be file or personal geodatabase.  this is used to create the output layer.  (can we all just stop using shapefiles please).
 
 
 
@@ -55,14 +59,15 @@ Tasks performed:
   
   -adds origx, origy fields and populates them using the new projection from the county layer
   
-  -modify data by updating synonyms table to update names to new nomenclature
+  -stardardize nomenclature using synonyms table
   
   -populate state species ID, scientific, common_names
   
-  
-Future ideas (iMapDataPrep) - 
   -populate observer IDs using a list of names used by an observer
   
+  
+Future ideas (iMapDataPrep) - 
+
   -support polygons
   
   
