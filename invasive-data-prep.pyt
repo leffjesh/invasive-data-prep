@@ -47,8 +47,6 @@ class UUIDUpdater(object):
 	        parameterType="Required",
 	        direction="Input")
 	
-	    param1.value = "sourceUniqueID"
-	
 	    params = [param0, param1]
 	
 	    return params
